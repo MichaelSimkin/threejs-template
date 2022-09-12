@@ -20,7 +20,7 @@
         "plugin:import/warnings",
         "plugin:import/typescript",
         "plugin:node/recommended",
-        "plugin:jest/all",
+        "plugin:jest/recommended",
         "plugin:promise/recommended",
         "plugin:regexp/recommended"
     ],
@@ -39,13 +39,10 @@
         "sourceType": "module"
     },
     "ignorePatterns": ["dist"],
-
     "rules": {
         "no-unused-vars": "off", // Checked by typescript
         "no-undef": "off", // Checked by typescript
-        "no-default-export": "off",
-        "import/prefer-default-export": "off",
         "node/no-unsupported-features/es-syntax": ["error", { "ignores": ["modules"] }],
-        "node/no-unpublished-require": ["error", { "devDependencies": true }]
+        "node/no-unpublished-import": ["error", { "allowModules": ["three"] }]
     }
 }
