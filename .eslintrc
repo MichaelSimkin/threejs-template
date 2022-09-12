@@ -1,7 +1,16 @@
 {
     "root": true,
     "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint", "prettier", "import", "node", "jest", "promise", "regexp"],
+    "plugins": [
+        "@typescript-eslint",
+        "prettier",
+        "import",
+        "node",
+        "jest",
+        "promise",
+        "regexp",
+        "html"
+    ],
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/eslint-recommended",
@@ -38,12 +47,5 @@
         "import/prefer-default-export": "off",
         "node/no-unsupported-features/es-syntax": ["error", { "ignores": ["modules"] }],
         "node/no-unpublished-require": ["error", { "devDependencies": true }]
-    },
-    "settings": {
-        "import/resolver": {
-            "node": {
-                "extensions": [".js", ".ts", ".json"]
-            }
-        }
     }
 }
