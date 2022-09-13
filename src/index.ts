@@ -1,46 +1,51 @@
-import * as THREE from "three"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
-const scene = new THREE.Scene()
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
 
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-camera.position.z = 2
+const scene = new THREE.Scene();
 
-const renderer = new THREE.WebGLRenderer()
-renderer.setSize(window.innerWidth, window.innerHeight)
-document.body.appendChild(renderer.domElement)
+const fov = 75;
+const aspect = window.innerWidth / window.innerHeight;
+const near = 0.1;
+const far = 100;
+const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+camera.position.z = 2;
 
-const controls = new OrbitControls(camera, renderer.domElement)
+const onWindowResize = () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    render();
+};
+window.addEventListener("resize", onWindowResize, false);
 
-const geometry = new THREE.BoxGeometry()
+const controls = new OrbitControls(camera, renderer.domElement);
+
+const geometry = new THREE.BoxGeometry();
 const material = new THREE.MeshBasicMaterial({
     color: 0x00ff00,
     wireframe: true,
-})
+});
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
 
-const cube = new THREE.Mesh(geometry, material)
-scene.add(cube)
+const animate: FrameRequestCallback = (time) => {
+    cube.rotation.x = time / 1000;
+    cube.rotation.y = time / 1000;
+    cube.rotation.z = time / 1000;
 
-window.addEventListener("resize", onWindowResize, false)
-function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight
-    camera.updateProjectionMatrix()
-    renderer.setSize(window.innerWidth, window.innerHeight)
-    render()
-}
+    controls.update();
 
-function animate() {
-    requestAnimationFrame(animate)
+    render();
 
-    cube.rotation.x += 0.01
-    cube.rotation.y += 0.01
+    requestAnimationFrame(animate);
+};
 
-    controls.update()
+const render = () => {
+    renderer.render(scene, camera);
+};
 
-    render()
-}
-
-function render() {
-    renderer.render(scene, camera)
-}
-animate()
+requestAnimationFrame(animate);

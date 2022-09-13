@@ -29,7 +29,7 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-    "ignorePatterns": ["dist"],
+    "ignorePatterns": ["dist", "webpack.*.js"],
     "rules": {
         "no-unused-vars": "off", // Checked by typescript
         "no-undef": "off", // Checked by typescript
