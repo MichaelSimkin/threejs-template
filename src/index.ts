@@ -1,5 +1,9 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import Stats from "three/examples/jsm/libs/stats.module.js";
+
+const stats = Stats();
+document.body.appendChild(stats.dom);
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -40,6 +44,8 @@ const animate: FrameRequestCallback = (time) => {
     controls.update();
 
     render();
+
+    stats.update();
 
     requestAnimationFrame(animate);
 };
