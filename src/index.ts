@@ -37,9 +37,9 @@ const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 
 const animate: FrameRequestCallback = (time) => {
-    cube.rotation.x = time / 1000;
-    cube.rotation.y = time / 1000;
-    cube.rotation.z = time / 1000;
+    const seconds = time / 1000;
+
+    cube.rotation.x = cube.rotation.y = cube.rotation.z = seconds;
 
     controls.update();
 
