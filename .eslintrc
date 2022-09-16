@@ -34,6 +34,6 @@
         "no-unused-vars": "off", // Checked by typescript
         "no-undef": "off", // Checked by typescript
         "node/no-unsupported-features/es-syntax": ["error", { "ignores": ["modules"] }],
-        "node/no-unpublished-import": ["error", { "allowModules": ["three"] }]
+        "node/no-unpublished-import": ["error", { "allowModules": ["three", "dat.gui"] }]
     }
 }
