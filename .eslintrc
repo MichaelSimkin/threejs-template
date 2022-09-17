@@ -29,6 +29,9 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
+    "settings": {
+        "node": { "tryExtensions": [".js", ".json", ".ts"] }
+    },
     "ignorePatterns": ["dist", "webpack.*.js"],
     "rules": {
         "no-unused-vars": "off", // Checked by typescript
